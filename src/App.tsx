@@ -23,8 +23,13 @@ export default function App() {
     },
   ]);
   const [selectedFlagIds, setSelectedFlagIds] = useState<number[]>([]);
+  const [highestScore, setHighestScore] = useState<number>(0);
 
   const score: number = selectedFlagIds.length;
+
+  if (score > highestScore) {
+    setHighestScore(score);
+  }
 
   const handleCardSelect = (selectedFlag: Flag) => {
     setSelectedFlagIds((prevSelectedFlagIds) => {
@@ -40,7 +45,7 @@ export default function App() {
     <>
       <h1>Memory Flags</h1>
       <div>Score: {score}</div>
-      <div>Best: _</div>
+      <div>Best: {highestScore}</div>
       <div>
         {flags.map((flag) => (
           <MemoryCard
