@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./App.css";
-import Flag from "./components/MemoryCard";
+import { Flag } from "./types/Flag";
+import FlagView from "./components/FlagView";
+import MemoryCard from "./components/MemoryCardView";
 
 export default function App() {
-  const [flags, setFlags] = useState([
+  const [flags, setFlags] = useState<Flag[]>([
     {
       id: 1,
       country: "Belgium",
@@ -20,6 +22,11 @@ export default function App() {
       imageUrl: "https://flagsapi.com/CO/flat/64.png",
     },
   ]);
+  const [selectedFlagIds, setSelectedFlagIds] = useState<number[]>([]);
+
+  const handleCardSelect = (selectedFlag: Flag) => {
+    setSelectedFlagIds([...selectedFlagIds, selectedFlag.id]);
+  };
 
   return (
     <>
@@ -28,7 +35,10 @@ export default function App() {
       <div>Best: _</div>
       <div>
         {flags.map((flag) => (
-          <Flag key={flag.id} {...flag} />
+          <MemoryCard
+            content={<FlagView key={flag.id} {...flag} />}
+            handleCardSelect={() => handleCardSelect(flag)}
+          />
         ))}
       </div>
     </>
