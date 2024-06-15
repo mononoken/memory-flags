@@ -46,6 +46,19 @@ export default function App() {
     return Array.from(randomIds);
   };
 
+  const shuffle = <T,>(array: T[]): T[] => {
+    const shuffledArray = [...array];
+
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  };
+
   const score: number = selectedFlagIds.length;
 
   if (score > highestScore) {
@@ -58,6 +71,7 @@ export default function App() {
         return [];
       }
 
+      setDisplayedFlags(shuffle(displayedFlags));
       return [...prevSelectedFlagIds, selectedFlag.id];
     });
   };
