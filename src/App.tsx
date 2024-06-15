@@ -24,14 +24,22 @@ export default function App() {
   ]);
   const [selectedFlagIds, setSelectedFlagIds] = useState<number[]>([]);
 
+  const score: number = selectedFlagIds.length;
+
   const handleCardSelect = (selectedFlag: Flag) => {
-    setSelectedFlagIds([...selectedFlagIds, selectedFlag.id]);
+    setSelectedFlagIds((prevSelectedFlagIds) => {
+      if (prevSelectedFlagIds.some((id) => id === selectedFlag.id)) {
+        return [];
+      }
+
+      return [...prevSelectedFlagIds, selectedFlag.id];
+    });
   };
 
   return (
     <>
       <h1>Memory Flags</h1>
-      <div>Score: _</div>
+      <div>Score: {score}</div>
       <div>Best: _</div>
       <div>
         {flags.map((flag) => (
