@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Flag } from "./types/Flag";
+import { Country } from "./types/Country";
 import FlagView from "./components/FlagView";
 import MemoryCard from "./components/MemoryCardView";
 
@@ -17,7 +18,7 @@ export default function App() {
           "https://restcountries.com/v3.1/all?fields=name,flags",
         );
         const data = await response.json();
-        const flags = data.map((country: any, index: number) => {
+        const flags = data.map((country: Country, index: number) => {
           return {
             id: index,
             country: country.name.common,
