@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { Flag } from "./types/Flag";
 import { Country } from "./types/Country";
 import FlagView from "./components/FlagView";
@@ -79,10 +78,16 @@ export default function App() {
 
   return (
     <>
-      <h1>Memory Flags</h1>
+      <h1 className="font-bold text-4xl text-center	">Memory Flags</h1>
+      <p className="text-center text-secondary">
+        How many flags can you remember selecting?
+      </p>
+      <p className="text-center text-secondary">
+        Click each flag but only click a flag one time.
+      </p>
       <div>Score: {score}</div>
       <div>Best: {highestScore}</div>
-      <div>
+      <div className="flex flex-col space-y-6">
         {flags.length !== 0 &&
           displayedFlags
             .map((id) => flags[id])
