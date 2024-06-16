@@ -3,6 +3,7 @@ import { Flag } from "./types/Flag";
 import { Country } from "./types/Country";
 import FlagView from "./components/FlagView";
 import MemoryCard from "./components/MemoryCardView";
+import InstructionView from "./components/InstructionView";
 
 export default function App() {
   const [flags, setFlags] = useState<Flag[]>([]);
@@ -79,12 +80,7 @@ export default function App() {
   return (
     <>
       <h1 className="font-bold text-4xl text-center	">Memory Flags</h1>
-      <p className="text-center text-secondary">
-        How many flags can you remember selecting?
-      </p>
-      <p className="text-center text-secondary">
-        Click each flag but only click a flag one time.
-      </p>
+      <InstructionView />
       <div>Score: {score}</div>
       <div>Best: {highestScore}</div>
       <div className="flex flex-col space-y-6">
