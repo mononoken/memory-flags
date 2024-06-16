@@ -95,7 +95,7 @@ export default function App() {
               <MemoryCard
                 key={flag.id}
                 content={<FlagView {...flag} />}
-                handleCardSelect={() => handleCardSelect(flag)}
+                onCardSelect={() => handleCardSelect(flag)}
               />
             ))}
       </div>
