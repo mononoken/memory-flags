@@ -7,9 +7,11 @@ import InstructionView from "./components/InstructionView";
 
 export default function App() {
   const [flags, setFlags] = useState<Flag[]>([]);
-  const [displayedFlags, setDisplayedFlags] = useState<number[]>([2, 4, 6, 8]);
+  const [displayedFlags, setDisplayedFlags] = useState<number[]>([]);
   const [selectedFlagIds, setSelectedFlagIds] = useState<number[]>([]);
   const [highestScore, setHighestScore] = useState<number>(0);
+
+  const maxFlags = 12;
 
   useEffect(() => {
     const fetchFlags = async () => {
@@ -39,7 +41,7 @@ export default function App() {
   const getRandomFlagIds = (max: number): number[] => {
     const randomIds = new Set<number>();
 
-    while (randomIds.size < 8) {
+    while (randomIds.size < maxFlags) {
       const randomFlagId: number = Math.floor(Math.random() * max);
       randomIds.add(randomFlagId);
     }
